@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
+
+    <jee:local-slsb jndi-name="java:app/ers-core-logic-impl-1.0/UserManagementSessionEJB!com.retirement.tat.core.business.UserManagementLocalBean" business-interface="com.retirement.tat.core.business.UserManagementLocalBean" id="userManagementSessionEJB"/>
+    <jee:local-slsb jndi-name="java:app/ers-core-logic-impl-1.0/PermissionManagementSessionEJB!com.retirement.tat.core.business.PermissionManagementLocalBean" business-interface="com.retirement.tat.core.business.PermissionManagementLocalBean" id="permissionManagementLocalBean"/>
+    <jee:local-slsb jndi-name="java:app/ers-core-logic-impl-1.0/RoleManagementSessionEJB!com.retirement.tat.core.business.RoleManagementLocalBean" business-interface="com.retirement.tat.core.business.RoleManagementLocalBean" id="roleManagementLocalBean"/>
+    <jee:local-slsb jndi-name="java:app/ers-core-logic-impl-1.0/UserGroupManagementSessionEJB!com.retirement.tat.core.business.UserGroupManagementLocalBean" business-interface="com.retirement.tat.core.business.UserGroupManagementLocalBean" id="userGroupManagementLocalBean"/>
+    <jee:local-slsb jndi-name="java:app/ers-core-logic-impl-1.0/UserRoleManagementSessionEJB!com.retirement.tat.core.business.UserRoleManagementLocalBean" business-interface="com.retirement.tat.core.business.UserRoleManagementLocalBean" id="userRoleManagementLocalBean"/>
+    <jee:local-slsb jndi-name="java:app/ers-core-logic-impl-1.0/RoleAclManagementSessionEJB!com.retirement.tat.core.business.RoleAclManagementLocalBean" business-interface="com.retirement.tat.core.business.RoleAclManagementLocalBean" id="roleAclManagementLocalBean"/>
+    <jee:local-slsb jndi-name="java:app/ers-core-logic-impl-1.0/UserGroupAclManagementSessionEJB!com.retirement.tat.core.business.UserGroupAclManagementLocalBean" business-interface="com.retirement.tat.core.business.UserGroupAclManagementLocalBean" id="userGroupAclManagementLocalBean"/>
+
+
+    <bean id="userSecurityAdvice" class="com.retirement.tat.web.security.MyUserDetailService">
+        <property name="userManagementLocalBean" ref="userManagementSessionEJB"/>
+    </bean>
+
+    <bean id="propertyConfigurer" class="com.retirement.tat.web.util.MyPropertyConfigurer"></bean>
+
+</beans>
