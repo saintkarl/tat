@@ -14,7 +14,7 @@ import java.io.File;
 public class MyPropertyConfigurer extends org.springframework.beans.factory.config.PropertyPlaceholderConfigurer {
     public MyPropertyConfigurer() {
         super();
-        File configFile = CommonUtil.getConfigFile("banvien/appconfig.properties");  //E:/WORK/FCV_Retailer/ApplicationFiles/jboss/banvien
+        File configFile = CommonUtil.getConfigFile("retirement/appconfig.properties");  //E:/WORK/FCV_Retailer/ApplicationFiles/jboss/retirement
         setLocations(new Resource[]{ new FileSystemResource(configFile)});
     }
 }

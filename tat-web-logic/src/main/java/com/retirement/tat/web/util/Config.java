@@ -22,7 +22,7 @@ public class Config extends Properties {
     }
 
     private Config() {
-        File configFile = CommonUtil.getConfigFile("banvien/appconfig.properties");
+        File configFile = CommonUtil.getConfigFile("retirement/appconfig.properties");
         if(configFile != null) {
             try {
                 InputStream input = new FileInputStream(configFile);
@@ -34,9 +34,9 @@ public class Config extends Properties {
                     this.put(key,serverProperties.get(key));
                 }
             } catch (FileNotFoundException e) {
-                log.error("Not found banvien/appconfig.properties file from server configuration. Please check it");
+                log.error("Not found retirement/appconfig.properties file from server configuration. Please check it");
             } catch (IOException e) {
-                log.error("Could not load banvien/appconfig.properties file from server configuration. Please check it");
+                log.error("Could not load retirement/appconfig.properties file from server configuration. Please check it");
             }
         }
     }

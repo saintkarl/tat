@@ -4,7 +4,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
 
-	<display-name>ers-ers</display-name>
+	<display-name>tat-ers</display-name>
 	<distributable />
 
 	<!-- precompiled jsp mappings -->
@@ -12,7 +12,7 @@
 	<!-- Define the default CSS Theme -->
 	<context-param>
 		<param-name>csstheme</param-name>
-		<param-value>ers</param-value>
+		<param-value>tat</param-value>
 	</context-param>
 	<!-- Define the basename for common.a resource bundle for I18N -->
 	<context-param>
@@ -41,23 +41,10 @@
             classpath:/applicationContext.xml
             classpath:/applicationContext-jcr.xml
             classpath:/applicationContext-service.xml
-            classpath:/applicationContext-mongodb.xml
             classpath:/security.xml
         </param-value>
 	</context-param>
 
-	<context-param>
-		<param-name>oauthSecConfig</param-name>
-		<param-value>
-			/WEB-INF/api-oauth-security.xml
-		</param-value>
-	</context-param>
-
-    <!--api filter-->
-    <filter>
-        <filter-name>apiOAuthFilter</filter-name>
-        <filter-class>com.retirement.tat.web.filter.ApiOAuthFilter</filter-class>
-    </filter>
 	<filter>
 		<filter-name>encodingFilter</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -214,11 +201,6 @@
         <url-pattern>/themes/images/*</url-pattern>
         <url-pattern>/themes/**</url-pattern>
     </filter-mapping>
-	<filter-mapping>
-		<filter-name>apiOAuthFilter</filter-name>
-		<url-pattern>/api/*</url-pattern>
-		<url-pattern>/mobile/*</url-pattern>
-	</filter-mapping>
 
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>

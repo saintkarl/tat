@@ -97,6 +97,7 @@ CREATE TABLE UserDemographic (
   UNIQUE(UserID)
 );
 ALTER TABLE UserDemographic ADD FOREIGN KEY (UserID) REFERENCES Users (UserID) ON DELETE NO ACTION;
+ALTER TABLE UserDemographic ADD FOREIGN KEY (CityOfBirthID) REFERENCES City (CityID) ON DELETE NO ACTION;
 
 INSERT INTO UserGroup(UserGroupID, Code, Name, CreatedDate, ModifiedDate) values (1,'ADMIN','ADMIN',NOW(),NOW());
 

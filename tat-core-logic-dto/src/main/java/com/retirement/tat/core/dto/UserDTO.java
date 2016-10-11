@@ -33,8 +33,6 @@ public class UserDTO implements Serializable {
 
     private String fullName;
 
-    private UserLineManagerDTO userLineManagerDTO;
-
     private UserDemographicDTO userDemographicDTO;
 
     private Timestamp createdDate;
@@ -89,14 +87,6 @@ public class UserDTO implements Serializable {
 
     public void setCode(String code) {
         this.code = code;
-    }
-
-    public UserLineManagerDTO getUserLineManagerDTO() {
-        return userLineManagerDTO;
-    }
-
-    public void setUserLineManagerDTO(UserLineManagerDTO userLineManagerDTO) {
-        this.userLineManagerDTO = userLineManagerDTO;
     }
 
     public UserDemographicDTO getUserDemographicDTO() {

@@ -99,7 +99,6 @@ public class Constants {
      */
     public static final String LOGIN_USER_ID_COOKIE = "j_loggined_userid";
     public static final String LOGIN_CHECKSUM = "j_loginned_checksum";
-    public static final String CHECKSUM_SECURITY_HASH = "iBanVienConnect";
     public static final String LOGIN_SCHOOL_ID_COOKIE = "j_school_id";
     public static final String LOGIN_ROLE_COOKIE = "j_role";
 
@@ -146,7 +145,7 @@ public class Constants {
     public static final String GLOBAL_META_ROLE_PREFIX = "GL_META_ROLE_";
     public static final String ACEGI_SECURITY_ORG_CODE = "ACEGI_SECURITY_ORG_CODE";
     public static final String ACEGI_SECURITY_ORG_KEY = "ACEGI_SECURITY_ORG_KEY";
-    public static final String ACEGI_REMEMBER_ME_COOKIE_KEY = "BanVienConnectRememberMeKey";
+    public static final String ACEGI_REMEMBER_ME_COOKIE_KEY = "RetirementRememberMeKey";
     public static final String SECURITY_CREDENTIAL_DELIMITER = "SECURITY_CREDENTIAL_DELIMITER";
     public static final String ACEGI_SECURITY_FORM_ORG_KEY = "ACEGI_SECURITY_FORM_ORG_KEY";
     public static final String ORG_CODE = "ORG_CODE";
@@ -171,14 +170,6 @@ public class Constants {
     public static final String IMAGE_OUTLET = "/outlet";
     public static final String IMAGE_QUESTION_PATH = "/survey/question";
 
-    public static final String OUTLET_TASKLIST_ACTION = "com.banvien.fcv.mobile.OUTLET_TASKLIST";
-    public static final String POSM_LIST = "com.banvien.fcv.mobile.POSM_LIST";
-    public static final String HOTZONE_LIST = "com.banvien.fcv.mobile.HOTZONE_LIST";
-    public static final String CATGROUP_LIST = "com.banvien.fcv.mobile.CATGROUP_LIST";
-    public static final String PRODUCTGROUP_LIST = "com.banvien.fcv.mobile.PRODUCTGROUP_LIST";
-    public static final String PRODUCT_LIST = "com.banvien.fcv.mobile.PRODUCT_LIST";
-    public static final String ROUTESCHEDULE_LIST = "com.banvien.fcv.mobile.ROUTESCHEDULE_LIST";
-    public static final String COMPLAINTYPE_LIST = "com.banvien.fcv.mobile.COMPLAINTYPE_LIST";
 
     public static final int OUTLET_ID = 0;
     public static final int CATGROUP_ID = 1;

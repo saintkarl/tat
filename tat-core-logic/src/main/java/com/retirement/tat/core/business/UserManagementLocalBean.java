@@ -45,10 +45,6 @@ public interface UserManagementLocalBean {
 
     void updateUserRoles(Long userId, Map<Long, Long> currentMaps) throws DuplicateKeyException;
 
-    void updateUserLine(UserDTO pojo) throws DuplicateKeyException, ObjectNotFoundException;
-
-    void updateUserOutlet(Long userId, Map<Long, Long> mapOutlets) throws DuplicateKeyException;
-
     Map<String, UserDTO> findByUserNames(List<String> userNames);
 
     Map<String, UserDTO> findByEmails(List<String> emails);

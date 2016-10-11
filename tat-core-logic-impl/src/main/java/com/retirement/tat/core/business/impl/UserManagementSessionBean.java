@@ -1,21 +1,28 @@
 package com.retirement.tat.core.business.impl;
 
-import com.retirement.tat.common.Constants;
 import com.retirement.tat.common.security.DesEncryptionUtils;
 import com.retirement.tat.common.util.DozerSingletonMapper;
-import com.retirement.tat.core.business.*;
+import com.retirement.tat.core.business.UserDemoGraphicManagementLocalBean;
+import com.retirement.tat.core.business.UserManagementLocalBean;
+import com.retirement.tat.core.business.UserRoleManagementLocalBean;
 import com.retirement.tat.core.business.utils.UserBeanUtil;
 import com.retirement.tat.core.business.utils.UserGroupBeanUtil;
 import com.retirement.tat.core.data.entity.*;
 import com.retirement.tat.core.data.session.*;
-import com.retirement.tat.core.dto.*;
+import com.retirement.tat.core.dto.PermissionDTO;
+import com.retirement.tat.core.dto.RoleDTO;
+import com.retirement.tat.core.dto.UserDTO;
+import com.retirement.tat.core.dto.UserRoleDTO;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import javax.ejb.*;
 import java.sql.Timestamp;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * E-Retailer System Platform - Copyright (c) by Ban Vien Co., Ltd. All rights reserved.
@@ -30,26 +37,16 @@ public class UserManagementSessionBean implements UserManagementLocalBean {
     @EJB
     private UsersLocalBean usersLocalBean;
 
-    @EJB
-    private UserLineManagerLocalBean userLineManagerLocalBean;
 
     @EJB
     private UserRoleManagementLocalBean userRoleManagementLocalBean;
 
-    @EJB
-    private UserOutletManagementLocalBean userOutletManagementLocalBean;
-
-    @EJB
-    private UserOutletLocalBean userOutletLocalBean;
 
     @EJB
     private UserDemoGraphicManagementLocalBean userDemoGraphicManagementLocalBean;
 
     @EJB
     private UserDemographicLocalBean userDemographicLocalBean;
-
-    @EJB
-    private UserLineManagerManagementLocalBean userLineManagerManagementLocalBean;
 
     @EJB
     private UserGroupLocalBean userGroupLocalBean;
@@ -76,7 +73,6 @@ public class UserManagementSessionBean implements UserManagementLocalBean {
             userDemographicEntity.setBirthday(pojo.getUserDemographicDTO().getBirthday());
             userDemographicEntity.setPlaceOfBirth(pojo.getUserDemographicDTO().getPlaceOfBirth());
             userDemographicEntity.setSex(pojo.getUserDemographicDTO().getSex());
-            userDemographicEntity.setCity(new CityEntity(pojo.getUserDemographicDTO().getCityOfBirth().getCityId()));
             userDemographicEntity.setUser(entity);
             userDemographicEntity.setCreatedDate(now);
             userDemographicLocalBean.update(userDemographicEntity);
@@ -102,48 +98,6 @@ public class UserManagementSessionBean implements UserManagementLocalBean {
         return results;
     }
 
-    @Override
-    public void updateUserLine(UserDTO pojo) throws DuplicateKeyException, ObjectNotFoundException {
-        if (!userLineManagerLocalBean.checkDuplicate(pojo.getUserId(), pojo.getUserLineManagerDTO().getLineManager().getUserId())) {
-            userLineManagerLocalBean.updateStatus(pojo.getUserId(), null, Constants.USER_LINE_INACTIVE);
-            Timestamp now = new Timestamp(System.currentTimeMillis());
-            UserLineManagerEntity userLineManagerEntity = new UserLineManagerEntity();
-            userLineManagerEntity.setLineManager(new UsersEntity(pojo.getUserLineManagerDTO().getLineManager().getUserId()));
-            userLineManagerEntity.setStatus(Constants.USER_LINE_ACTIVE);
-            userLineManagerEntity.setUser(new UsersEntity(pojo.getUserId()));
-            userLineManagerEntity.setCreatedDate(now);
-            this.userLineManagerLocalBean.save(userLineManagerEntity);
-        } else {
-            userLineManagerLocalBean.updateStatus(pojo.getUserId(), null, Constants.USER_LINE_INACTIVE);
-            userLineManagerLocalBean.updateStatus(pojo.getUserId(), pojo.getUserLineManagerDTO().getLineManager().getUserId(), Constants.USER_LINE_ACTIVE);
-        }
-    }
-
-    @Override
-    public void updateUserOutlet(Long userId, Map<Long, Long> currentMaps) throws DuplicateKeyException {
-        List<UserOutletEntity> userOutletEntitys = this.userOutletLocalBean.findByUserId(userId);
-        Map<Long, Long> oldMaps2 = new HashMap<>();
-        Timestamp now = new Timestamp(System.currentTimeMillis());
-        if (userOutletEntitys != null && userOutletEntitys.size() > 0) {
-            for (UserOutletEntity userOutletEntity : userOutletEntitys) {
-                oldMaps2.put(userOutletEntity.getOutlet().getOutletId(), userOutletEntity.getUser().getUserId());
-            }
-        }
-        for (Long key : currentMaps.keySet()) {
-            if (oldMaps2.get(key) == null && currentMaps.get(key) != null) {
-                UserOutletEntity userOutletEntity = new UserOutletEntity();
-                userOutletEntity.setOutlet(new OutletEntity(key));
-                userOutletEntity.setUser(new UsersEntity(userId));
-                userOutletEntity.setCreatedDate(now);
-                this.userOutletLocalBean.save(userOutletEntity);
-            }
-        }
-        for (Long key : oldMaps2.keySet()) {
-            if (currentMaps.get(key) == null) {
-                this.userOutletLocalBean.deleteByOutletUserId(key, userId);
-            }
-        }
-    }
 
     @Override
     public void updateUserRoles(Long userId, Map<Long, Long> currentMaps) throws DuplicateKeyException {
@@ -197,7 +151,6 @@ public class UserManagementSessionBean implements UserManagementLocalBean {
             userDemographicEntity.setBirthday(pojo.getUserDemographicDTO().getBirthday());
             userDemographicEntity.setPlaceOfBirth(pojo.getUserDemographicDTO().getPlaceOfBirth());
             userDemographicEntity.setSex(pojo.getUserDemographicDTO().getSex());
-            userDemographicEntity.setCity(new CityEntity(pojo.getUserDemographicDTO().getCityOfBirth().getCityId()));
             userDemographicEntity.setUser(new UsersEntity(pojo.getUserId()));
             if (pojo.getUserDemographicDTO().getUserDemographicId() != null) {
                 userDemographicEntity.setModifiedDate(now);
@@ -270,39 +223,6 @@ public class UserManagementSessionBean implements UserManagementLocalBean {
     }
 
     @Override
-    public List<UserDTO> importOutletUser(List<ImportOutletUserDTO> listImport) {
-        List<UserDTO> listAfterImport = new ArrayList<>();
-        for (ImportOutletUserDTO importDTO : listImport) {
-            UserDTO userDTO = importDTO.getUser();
-            UsersEntity usersEntity = DozerSingletonMapper.getInstance().map(userDTO, UsersEntity.class);
-            try {
-                usersEntity = usersLocalBean.save(usersEntity);
-                listAfterImport.add(DozerSingletonMapper.getInstance().map(usersEntity, UserDTO.class));
-            } catch (DuplicateKeyException e) {
-                e.printStackTrace();
-            }
-        }
-        return listAfterImport;
-    }
-
-    @Override
-    public List<UserLineManagerDTO> importManager(List<UserLineManagerDTO> listManager) {
-        List<UserLineManagerDTO> listAfterImport = new ArrayList<>();
-        if (listManager.size() > 0) {
-            for (UserLineManagerDTO dto : listManager) {
-                UserLineManagerEntity entity = DozerSingletonMapper.getInstance().map(dto, UserLineManagerEntity.class);
-                try {
-                    entity = userLineManagerLocalBean.save(entity);
-                    listAfterImport.add(DozerSingletonMapper.getInstance().map(entity, UserLineManagerDTO.class));
-                } catch (DuplicateKeyException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return listAfterImport;
-    }
-
-    @Override
     public Boolean checkDuplicatedUniqueData(UserDTO userDTO) {
         return usersLocalBean.checkDuplicatedUniqueData(DozerSingletonMapper.getInstance().map(userDTO, UsersEntity.class));
     }
@@ -325,32 +245,6 @@ public class UserManagementSessionBean implements UserManagementLocalBean {
             userDTOs.add(DozerSingletonMapper.getInstance().map(entity, UserDTO.class));
         }
         return userDTOs;
-    }
-
-    @Override
-    public void insertOrUpdateByList(List<UserImportDTO> userImportDTOs) throws DuplicateKeyException {
-        List<UsersEntity> user2Insert = new ArrayList<>();
-        for (UserImportDTO dto : userImportDTOs) {
-            if (dto.getValid()) {
-                Timestamp now = new Timestamp(System.currentTimeMillis());
-                UsersEntity entity = UserBeanUtil.dto2Entity(dto.getUser());
-                if (dto.getUser().getUserId() != null) {
-                    entity.setModifiedDate(now);
-                    usersLocalBean.update(entity);
-                } else {
-                    entity.setCreatedDate(now);
-                    user2Insert.add(entity);
-                }
-
-            }
-        }
-        if(user2Insert.size() > 0){
-            try {
-                usersLocalBean.doBulkInsert(user2Insert);
-            } catch (Exception e){
-                  throw new DuplicateKeyException("Duplicate key exception " + e.getMessage());
-            }
-        }
     }
 
     @Override
@@ -387,72 +281,6 @@ public class UserManagementSessionBean implements UserManagementLocalBean {
     public UserDTO findByEmail(String email) throws ObjectNotFoundException {
         UsersEntity entity = usersLocalBean.findByEmail(email);
         return UserBeanUtil.entity2DTO(entity);
-    }
-
-    @Override
-    public void validateData(List<UserImportDTO> userImportDTOs, List<String> emails, List<String> userNames) {
-
-        List<UsersEntity> userNameEntities = usersLocalBean.findByUserNames(userNames);
-        List<UsersEntity> userEmailEntities = usersLocalBean.findByEmails(emails);
-        List<UserGroupEntity> userGroupEntities = userGroupLocalBean.findAll();
-
-        Map<String, UserGroupEntity> userGroupMap = new HashMap<>();
-        for (UserGroupEntity entity : userGroupEntities) {
-            userGroupMap.put(entity.getCode().toUpperCase(), entity);
-        }
-
-        Map<String, UsersEntity> userNameMap = new HashMap<>();
-        for (UsersEntity entity : userNameEntities) {
-            userNameMap.put(entity.getUserName().toUpperCase(), entity);
-        }
-
-        Map<String, UsersEntity> userEmailMap = new HashMap<>();
-        for (UsersEntity entity : userEmailEntities) {
-            userEmailMap.put(entity.getEmail().toUpperCase(), entity);
-        }
-        List<UserImportDTO> userImportDTOList = new ArrayList<>(userImportDTOs.size());
-        for (UserImportDTO userImport : userImportDTOs) {
-            if (!userImport.getValid()) {
-                continue;
-            }
-            UserDTO dto = userImport.getUser();
-            Boolean valid = true;
-            String errorCode = "";
-            if (userGroupMap.get(dto.getUserGroup().getCode().toUpperCase()) == null) {
-                valid = false;
-                errorCode = "user.group.do.not.exist";
-            } else if (userNameMap.get(dto.getUserName().toUpperCase()) != null) {
-                UsersEntity userUserName = userNameMap.get(dto.getUserName().toUpperCase());
-                UsersEntity userEmail = userEmailMap.get(dto.getEmail().toUpperCase());
-                if (userEmail != null && !(userEmail.getEmail().toUpperCase()).equals(userUserName.getEmail().toUpperCase())) {
-                    valid = false;
-                    errorCode = "errors.email.duplicated";
-                } else {
-                    updateValue(dto, userUserName);
-                    dto = UserBeanUtil.entity2DTO(userUserName);
-                }
-
-            }
-            if (valid && userEmailMap.get(dto.getEmail().toUpperCase()) != null) {
-                UsersEntity userUserName = userNameMap.get(dto.getUserName().toUpperCase());
-                UsersEntity userEmail = userEmailMap.get(dto.getEmail().toUpperCase());
-                if (userUserName != null && !(userEmail.getUserName().toUpperCase()).equals(userUserName.getUserName().toUpperCase())) {
-                    valid = false;
-                    errorCode = "errors.username.duplicated";
-                } else {
-                    updateValue(dto, userUserName);
-                    dto = UserBeanUtil.entity2DTO(userUserName);
-                }
-            }
-            if(valid){
-                UserGroupEntity userGroupEntity = userGroupMap.get(dto.getUserGroup().getCode());
-                dto.getUserGroup().setUserGroupId(userGroupEntity.getUserGroupId());
-            }
-            userImport.setValid(valid);
-            userImport.setErrorCode(errorCode);
-            userImport.setUser(dto);
-            userImportDTOList.add(userImport);
-        }
     }
 
     @Override

@@ -23,7 +23,7 @@ public class JWTUtils {
 
     public static String getJwt(String subject, Map<String, Object> propertyMap, SignatureAlgorithm algorithm) {
         return Jwts.builder().setSubject(subject)
-                .setIssuer("BanVien")
+                .setIssuer("Retirement")
                 .setClaims(propertyMap)
                 .signWith(algorithm, secretBytes).compact();
     }
