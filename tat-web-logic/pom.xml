@@ -18,6 +18,26 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.retirement</groupId>
+            <artifactId>tat-common</artifactId>
+            <version>${project.version}</version>
+            <scope>provided</scope>
+
+        </dependency>
+
+        <dependency>
+            <groupId>com.retirement</groupId>
+            <artifactId>tat-core-logic</artifactId>
+            <version>${project.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.retirement</groupId>
+            <artifactId>content-jcr</artifactId>
+            <version>${project.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>org.jboss.spec.javax.ws.rs</groupId>

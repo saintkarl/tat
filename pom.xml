@@ -12,6 +12,14 @@
         <module>tat-web</module>
         <module>tat-web-logic</module>
         <module>tat-common</module>
+        <module>tat-core-logic</module>
+        <module>tat-core-logic-dto</module>
+        <module>tat-core-logic-util</module>
+        <module>tat-core-data</module>
+        <module>tat-core-logic-impl</module>
+        <module>tat-ear</module>
+        <module>tat-persistence-data</module>
+        <module>content-jcr</module>
     </modules>
 
     <name>Tips And Tricks - Platform</name>

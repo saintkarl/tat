@@ -12,19 +12,6 @@
         <pattern>/api/**</pattern>
     </excludes>
 
-    <decorator name="rlwebsite_login" page="rllogin.jsp">
-        <pattern>/rlwebsite/index*</pattern>
-        <pattern>/rlwebsite/feedback*</pattern>
-    </decorator>
-
-    <decorator name="rlwebsite" page="rlhomepage.jsp">
-        <pattern>/rlwebsite/*/*</pattern>
-
-    </decorator>
-
-    <!--<decorator name="default" page="default_3.jsp">-->
-        <!--<pattern>/*</pattern>-->
-    <!--</decorator>-->
 
     <decorator name="default" page="default_ace.jsp">
         <pattern>/*</pattern>
@@ -32,7 +19,7 @@
 
 
 
-    <decorator name="login" page="login_2.jsp">
+    <decorator name="login" page="login_lte.jsp">
         <pattern>/login*</pattern>
         <pattern>/forgotpwd*</pattern>
     </decorator>
