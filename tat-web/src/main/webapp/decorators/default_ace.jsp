@@ -6,7 +6,7 @@
     <title><fmt:message key="webapp.name"/>&trade;&nbsp;-&nbsp;<decorator:title/></title>
         <!-- bootstrap & fontawesome -->
         <link rel="stylesheet" href="<c:url value="/themes/ace_1.4/dist/css/bootstrap.min.css"/>">
-        <link rel="stylesheet" href="<c:url value="/themes/ace_1.4/font-awesome/4.5.0/css/font-awesome.min.css"/>">
+        <link rel="stylesheet" href="<c:url value="/themes/font-awesome-4.6.3/css/font-awesome.min.css"/>">
 
         <!-- page specific plugin styles -->
         <link rel="stylesheet" href="<c:url value="/themes/ace_1.4/components/select2-4.0.3/dist/css/select2.min.css"/>">
@@ -20,7 +20,7 @@
         <link rel="stylesheet" href="<c:url value="/themes/ace_1.4/components/bootstrap-select/dist/css/bootstrap-select.css"/>">
 
         <%--vendor theme--%>
-        <link href="<c:url value="/themes/themeadmin/vendor/kartik-bootstrap-fileinput/css/fileinput.min.css"/>" rel="stylesheet" >
+        <link href="<c:url value="/themes/plugins/kartik-bootstrap-fileinput/css/fileinput.min.css"/>" rel="stylesheet" >
 
         <!-- ace styles -->
         <link rel="stylesheet" href="<c:url value="/themes/ace_1.4/dist/css/ace.min.css"/>">
@@ -28,9 +28,9 @@
         <link rel="stylesheet" href="<c:url value="/themes/ace_1.4/dist/css/ace-rtl.min.css"/>">
 
         <%--popup detele--%>
-        <link href="<c:url value="/themes/materialadmin/vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.css"/>" rel="stylesheet">
+        <link href="<c:url value="/themes/plugins/sweetalert/lib/sweet-alert.css"/>" rel="stylesheet">
 
-        <link rel="stylesheet" href="<c:url value="/themes/ers/css/global.css"/>">
+        <link rel="stylesheet" href="<c:url value="/themes/tat/css/global.css"/>">
 
 
 
@@ -44,7 +44,7 @@
         <!--[if IE]>
         <script src="<c:url value="/themes/ace_1.4/jquery/1.11.3/jquery.min.js"/>"></script>
         <![endif]-->
-        <script src="<c:url value='/scripts/ers.js'/>"></script>
+        <script src="<c:url value='/themes/tat/js/global.js'/>"></script>
     <decorator:head/>
 
 <body class="no-skin">
