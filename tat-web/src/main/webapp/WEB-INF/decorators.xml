@@ -19,7 +19,7 @@
 
 
 
-    <decorator name="login" page="login_lte.jsp">
+    <decorator name="login" page="login_ace.jsp">
         <pattern>/login*</pattern>
         <pattern>/forgotpwd*</pattern>
     </decorator>
