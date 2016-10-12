@@ -27,12 +27,6 @@ public class UserDTO implements Serializable {
 
     private UserGroupDTO userGroup;
 
-    private String managerCode;
-
-    private String address;
-
-    private String fullName;
-
     private UserDemographicDTO userDemographicDTO;
 
     private Timestamp createdDate;
@@ -52,7 +46,7 @@ public class UserDTO implements Serializable {
     public UserDTO() {
     }
 
-    public UserDTO(Long userId, String userName, String password, String firstName, String lastName,String fullName, String email, String phoneNumber,
+    public UserDTO(Long userId, String userName, String password, String firstName, String lastName, String email, String phoneNumber,
                    String code, int status,  Timestamp createdDate, Timestamp modifiedDate) {
         this.userId = userId;
         this.userName = userName;
@@ -65,7 +59,6 @@ public class UserDTO implements Serializable {
         this.status = status;
         this.createdDate = createdDate;
         this.modifiedDate = modifiedDate;
-        this.fullName = fullName;
     }
 
     public UserDTO(Long userId) {
@@ -176,30 +169,6 @@ public class UserDTO implements Serializable {
 
     public void setModifiedDate(Timestamp modifiedDate) {
         this.modifiedDate = modifiedDate;
-    }
-
-    public String getManagerCode() {
-        return managerCode;
-    }
-
-    public void setManagerCode(String managerCode) {
-        this.managerCode = managerCode;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
     }
 
     public List<RoleDTO> getRoles() {

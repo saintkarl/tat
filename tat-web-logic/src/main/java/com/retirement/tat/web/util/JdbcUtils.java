@@ -16,7 +16,7 @@ public class JdbcUtils {
     public static <T> List<T> query(String tableName, String[] projections, Class T) throws Exception {
         try {
             InitialContext ic = new InitialContext();
-            DataSource dataSource = (DataSource) ic.lookup("java:jboss/datasources/ErsPlatformDS");
+            DataSource dataSource = (DataSource) ic.lookup("java:jboss/datasources/TatPlatformDS");
             JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
             StringBuilder sb = new StringBuilder();
             for (String s : projections) {

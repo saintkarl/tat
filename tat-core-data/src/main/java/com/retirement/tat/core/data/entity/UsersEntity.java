@@ -131,42 +131,6 @@ public class UsersEntity {
         this.status = status;
     }
 
-    private String managerCode;
-
-    @Column(name = "managercode")
-    @Basic
-    public String getManagerCode() {
-        return managerCode;
-    }
-
-    public void setManagerCode(String managerCode) {
-        this.managerCode = managerCode;
-    }
-
-    private String address;
-
-    @Column(name = "address")
-    @Basic
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    private String fullName;
-
-    @Column(name = "fullname")
-    @Basic
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
     private Timestamp createdDate;
 
     @Column(name = "createddate")

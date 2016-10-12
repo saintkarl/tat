@@ -60,7 +60,7 @@ public abstract class AbstractSessionBean<T, ID extends Serializable> implements
 	}
     
 	
-	@PersistenceContext(unitName = "ers-persistence-data")
+	@PersistenceContext(unitName = "tat-persistence-data")
 	protected EntityManager entityManager;
 	
 	/**

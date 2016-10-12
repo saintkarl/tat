@@ -74,11 +74,4 @@
         <property name="prefix" value="/WEB-INF/pages/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
-    
-    <!-- Add additional controller beans here -->
-
-    <bean id="viewResolver1" class="org.springframework.web.servlet.view.XmlViewResolver">
-        <property name="order" value="1"/>
-        <property name="location" value="/WEB-INF/views.xml"/>
-    </bean>
 </beans>

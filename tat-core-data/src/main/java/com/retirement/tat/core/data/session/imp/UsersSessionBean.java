@@ -4,22 +4,16 @@ import com.retirement.tat.core.data.entity.UsersEntity;
 import com.retirement.tat.core.data.session.UsersLocalBean;
 import org.apache.commons.lang.StringUtils;
 
-import javax.annotation.Resource;
-import javax.ejb.EJBContext;
 import javax.ejb.ObjectNotFoundException;
 import javax.ejb.Stateless;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
-import javax.transaction.*;
 import java.util.ArrayList;
 import java.util.List;
 
 
 @Stateless(name = "UsersSessionEJB")
 public class UsersSessionBean extends AbstractSessionBean<UsersEntity, Long> implements UsersLocalBean {
-
-    @Resource
-    private EJBContext context;
 
     public UsersSessionBean() {
     }
@@ -155,15 +149,6 @@ public class UsersSessionBean extends AbstractSessionBean<UsersEntity, Long> imp
         }
     }
 
-    @Override
-    public void doBulkInsert(List<UsersEntity> entities) throws HeuristicRollbackException, RollbackException, HeuristicMixedException, SystemException, NotSupportedException {
-        UserTransaction utx = context.getUserTransaction();
-        utx.begin();
-        for (UsersEntity userEntity : entities) {
-            entityManager.persist(userEntity);
-        }
-        utx.commit();
-    }
 
     @Override
     public List<UsersEntity> findByUserNameQuery(String queryStr) {

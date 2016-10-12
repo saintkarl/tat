@@ -7,7 +7,7 @@ public class UserBeanUtil {
 
     public static UserDTO entity2DTO(UsersEntity entity) {
         UserDTO dto = new UserDTO(entity.getUserId(), entity.getUserName(), entity.getPassword(),
-                entity.getFirstName(), entity.getLastName(),entity.getFullName(), entity.getEmail(),entity.getPhoneNumber(),
+                entity.getFirstName(), entity.getLastName(), entity.getEmail(),entity.getPhoneNumber(),
                 entity.getCode(),entity.getStatus(),
                 entity.getCreatedDate(), entity.getModifiedDate());
         dto.setUserGroup(UserGroupBeanUtil.entity2DTO(entity.getUserGroup()));

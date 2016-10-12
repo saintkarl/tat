@@ -31,7 +31,5 @@ public interface UsersLocalBean extends GenericSessionBean<UsersEntity, Long> {
 
     UsersEntity findByEmail(String emails) throws ObjectNotFoundException;
 
-   void doBulkInsert(List<UsersEntity> entities) throws HeuristicRollbackException, RollbackException, HeuristicMixedException, SystemException, NotSupportedException;
-
     List<UsersEntity> findByUserNameQuery(String query);
 }
