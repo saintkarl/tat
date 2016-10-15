@@ -26,7 +26,7 @@ public class HomeController extends ApplicationObjectSupport {
 
     @RequestMapping(value={"/", "/index", "/home.html"})
     public ModelAndView index(HttpServletRequest request, HttpServletResponse response) {
-        ModelAndView mav = new ModelAndView("/home/home");
+        ModelAndView mav = new ModelAndView("/home");
         return mav;
     }
 
