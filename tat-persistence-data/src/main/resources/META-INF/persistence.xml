@@ -11,6 +11,13 @@
         <class>com.retirement.tat.core.data.entity.RoleAclEntity</class>
         <class>com.retirement.tat.core.data.entity.UserGroupAclEntity</class>
         <class>com.retirement.tat.core.data.entity.UserRoleEntity</class>
+        <class>com.retirement.tat.core.data.entity.AuthorEntity</class>
+        <class>com.retirement.tat.core.data.entity.BookEntity</class>
+        <class>com.retirement.tat.core.data.entity.BookCategoryEntity</class>
+        <class>com.retirement.tat.core.data.entity.NewsEntity</class>
+        <class>com.retirement.tat.core.data.entity.NewsCategoryEntity</class>
+        <class>com.retirement.tat.core.data.entity.TipEntity</class>
+        <class>com.retirement.tat.core.data.entity.TipCategoryEntity</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
             <property name="hibernate.default_schema" value="TatPlatform" />
