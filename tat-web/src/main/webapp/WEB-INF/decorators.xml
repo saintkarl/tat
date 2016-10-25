@@ -13,8 +13,12 @@
     </excludes>
 
 
-    <decorator name="default" page="default_ace.jsp">
-        <pattern>/*</pattern>
+    <decorator name="private" page="default_ace.jsp">
+        <pattern>/admin/**</pattern>
+    </decorator>
+
+    <decorator name="public" page="default_pub.jsp">
+        <pattern>/public/**</pattern>
     </decorator>
 
 

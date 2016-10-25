@@ -1,6 +1,6 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <c:choose>
-    <c:when test="${ers:isAndroidTablet(pageContext.request)}">
+    <c:when test="${tat:isAndroidTablet(pageContext.request)}">
         <meta name="viewport" content="width=800, user-scalable=yes"/>
     </c:when>
     <c:otherwise>
@@ -16,7 +16,7 @@
 <meta http-equiv="Expires" content="0"/>
 <meta http-equiv="X-UA-Compatible" content="IE=8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<meta name="generator" content="Ban Vien Co., Ltd" />
+<meta name="generator" content="Retirement Co., Ltd" />
 <link rel="icon" href="<c:url value="/favicon.ico"/>"/>
 
 <meta name="viewport" content="width=device-width, user-scalable=no" />

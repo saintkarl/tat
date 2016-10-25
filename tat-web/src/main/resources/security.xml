@@ -14,6 +14,7 @@
     <http pattern="/ckeditor442/**" security="none"/>
     <http auto-config="false" access-decision-manager-ref="accessDecisionManager">
         <intercept-url pattern="/ajax/**" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+        <intercept-url pattern="/public/**" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
         <intercept-url pattern="/admin/**" access="LOGON" />
         <intercept-url pattern="/home**" access="LOGON" />
         <custom-filter position="PRE_AUTH_FILTER" ref="myAuthenticationFilter"/>
@@ -79,8 +80,7 @@
         <beans:property name="rememberMeServices" ref="rememberMeServices"/>
     </beans:bean>
     <beans:bean id="myAuthenticationSuccessHandler" class="com.retirement.tat.web.security.MyAuthenticationSuccessHandler">
-        <beans:property name="userLandingUrl" value="/rlwebsite/index.html"/>
-        <beans:property name="defaultTargetUrl" value="/home.html"/>
+        <beans:property name="defaultTargetUrl" value="/admin/home.html"/>
         <beans:property name="alwaysUseDefaultTargetUrl" value="true"/>
     </beans:bean>
     <beans:bean id="myAuthenticationFailureHandler" class="com.retirement.tat.web.security.MyAuthenticationFailureHandler">

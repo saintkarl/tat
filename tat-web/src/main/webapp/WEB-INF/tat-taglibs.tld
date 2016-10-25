@@ -8,8 +8,8 @@
         version="2.0">
 
     <tlib-version>2.0</tlib-version>
-    <short-name>ers-taglibs</short-name>
-    <uri>http://www.banvien.com/ers-taglibs</uri>
+    <short-name>tat-taglibs</short-name>
+    <uri>http://www.retirement.com/tat-taglibs</uri>
 
     <function>
         <name>roundUp</name>
