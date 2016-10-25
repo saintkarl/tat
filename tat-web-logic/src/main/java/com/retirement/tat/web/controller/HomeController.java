@@ -9,12 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-/**
- * Copyright (c) 2015 by Ban Vien Co., Ltd. All rights reserved.
- * User: viennh
- * Date: 8/27/15
- * Time: 4:53 PM
- */
 @Controller
 public class HomeController extends ApplicationObjectSupport {
 

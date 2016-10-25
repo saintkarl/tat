@@ -15,8 +15,8 @@
         <div class="navbar-header pull-left">
             <a href="#" class="navbar-brand">
                 <small>
-                    <i class="fa fa-leaf"></i>
-                    eTools
+                    <i class="fa fa-newspaper-o"></i>
+                    Tips & Tricks
                 </small>
             </a>
         </div>

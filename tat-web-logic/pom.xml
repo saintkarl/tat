@@ -23,12 +23,18 @@
             <artifactId>tat-common</artifactId>
             <version>${project.version}</version>
             <scope>provided</scope>
-
         </dependency>
 
         <dependency>
             <groupId>com.retirement</groupId>
             <artifactId>tat-core-logic</artifactId>
+            <version>${project.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.retirement</groupId>
+            <artifactId>tat-core-data</artifactId>
             <version>${project.version}</version>
             <scope>provided</scope>
         </dependency>

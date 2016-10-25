@@ -86,7 +86,7 @@ CREATE TABLE Tip (
   TipID BIGSERIAL PRIMARY KEY,
   Title VARCHAR(255) NOT NULL,
   Description TEXT,
-  Thumbnail VARCHAR(50) NOT NULL,
+  Thumbnail VARCHAR(50),
   Content TEXT,
   Tags VARCHAR(255),
   Source VARCHAR(50),
