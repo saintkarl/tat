@@ -75,5 +75,19 @@
 <!-- Footer-->
 <jsp:include page="/themes/ace_1.4/include/footer.jsp"/>
 
+<script>
+    function warningBeforeDelete(id){
+        bootbox.confirm('<fmt:message key="confirm.delete"/>', '<fmt:message key="confirm.delete.msg"/>', function(r) {
+            if(r){
+                if(id != null && id != undefined){
+                    $("<input type='hidden' name='checkList' value='"+id+"'>").appendTo($("#listForm"));
+                    $("#crudaction").val("delete");
+                    $("#listForm").submit();
+                }
+            }
+        });
+    }
+</script>
+
 </body>
 </html>

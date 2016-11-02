@@ -63,7 +63,7 @@
     </c:if>
 
 
-    <form:form action="${formUrl}" commandName="item" role="form" id="itemForm" cssClass="form-horizontal">
+    <form:form action="${formUrl}" commandName="item" role="form" id="listForm" cssClass="form-horizontal">
         <div class="row">
             <div class="col-xs-12">
                 <div class="widget-box table-filter">
@@ -205,7 +205,7 @@
                                     <i class="ace-icon fa fa-plus bigger-120"></i>
                                     <span class="hidden"><fmt:message key="user.management.userLine"/></span>
                                 </a>
-                                <button onclick="warningBeforeDelete('${tableList.userId}','itemForm');"
+                                <button onclick="warningBeforeDelete('${tableList.userId}');"
                                         type="button" class="btn btn-xs btn-danger">
                                     <i class="ace-icon fa fa-trash-o bigger-120"></i>
                                 </button>
@@ -228,16 +228,6 @@
 <div class="modal fade" role="dialog" id="addModal"></div>
 
 <script type="text/javascript">
-
-    function warningBeforeDelete(id, form) {
-        showWarningDelete({
-            title: "<fmt:message key="delete.confirm.message.title"/>",
-            text: "<fmt:message key="delete.confirm.message.content"/>",
-            cancelButtonText: "<fmt:message key="label.cancel"/>",
-            confirmButtonText: "<fmt:message key="label.delete"/>"
-        }, id, form);
-    }
-
     $(document).ready(function () {
         activeMenu();
         $("#btnApplySearch").click(function () {

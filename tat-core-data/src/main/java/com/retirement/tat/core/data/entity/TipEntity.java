@@ -7,7 +7,7 @@ import java.sql.Timestamp;
  * Created by khanhcq on 16-Oct-16.
  */
 @Entity
-@Table(name = "tip", schema = "tatplatform", catalog = "TatPlatform")
+@Table(name = "tip")
 public class TipEntity {
     private Long tipId;
     private String title;
@@ -23,6 +23,7 @@ public class TipEntity {
 
     @Id
     @Column(name = "tipid")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getTipId() {
         return tipId;
     }

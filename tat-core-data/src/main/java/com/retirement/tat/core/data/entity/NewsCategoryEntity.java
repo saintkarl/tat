@@ -8,7 +8,7 @@ import java.util.List;
  * Created by khanhcq on 16-Oct-16.
  */
 @Entity
-@Table(name = "newscategory", schema = "tatplatform", catalog = "TatPlatform")
+@Table(name = "newscategory")
 public class NewsCategoryEntity {
     private Long newsCategoryId;
     private String code;
@@ -19,6 +19,7 @@ public class NewsCategoryEntity {
 
     @Id
     @Column(name = "newscategoryid")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getNewsCategoryId() {
         return newsCategoryId;
     }

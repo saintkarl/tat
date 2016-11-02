@@ -162,4 +162,12 @@ public class Constants {
     public static final int INACTIVE = 0;
     public static final int ACTIVE = 1;
 
+    public static final String TYPE_SUCCESS = "success";
+    public static final String TYPE_ERROR = "error";
+    public static final String TYPE_DANGER = "danger";
+
+    public static final String REDIRECT_INSERT = "redirect_insert";
+    public static final String REDIRECT_UPDATE = "redirect_update";
+    public static final String REDIRECT_ERROR = "redirect_error";
+
 }

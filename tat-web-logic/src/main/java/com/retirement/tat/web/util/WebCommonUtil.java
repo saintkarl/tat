@@ -1,10 +1,13 @@
 package com.retirement.tat.web.util;
 
+import com.retirement.tat.common.Constants;
 import org.apache.commons.lang.time.DurationFormatUtils;
 import org.apache.log4j.Logger;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -69,6 +72,19 @@ public class WebCommonUtil {
 
         String hrDateText = DurationFormatUtils.formatDuration(diff, "d 'day' H 'hour' ago");
         return hrDateText;
+    }
+
+    public static void addRedirectMsg(ModelAndView mav, String crudaction, Map<String, String> messageMap){
+        if(Constants.REDIRECT_UPDATE.equals(crudaction)){
+            mav.addObject(Constants.ALTER, Constants.TYPE_SUCCESS);
+            mav.addObject(Constants.MESSAGE_RESPONSE, messageMap.get(Constants.REDIRECT_UPDATE));
+        }else if(Constants.REDIRECT_INSERT.equals(crudaction)){
+            mav.addObject(Constants.ALTER, Constants.TYPE_SUCCESS);
+            mav.addObject(Constants.MESSAGE_RESPONSE, messageMap.get(Constants.REDIRECT_INSERT));
+        }else if(Constants.REDIRECT_ERROR.equals(crudaction)){
+            mav.addObject(Constants.ALTER, Constants.TYPE_DANGER);
+            mav.addObject(Constants.MESSAGE_RESPONSE, messageMap.get(Constants.REDIRECT_ERROR));
+        }
     }
 
 }

@@ -20,6 +20,8 @@
     <jee:local-slsb jndi-name="java:app/tat-core-logic-impl-1.0/UserRoleManagementSessionEJB!com.retirement.tat.core.business.UserRoleManagementLocalBean" business-interface="com.retirement.tat.core.business.UserRoleManagementLocalBean" id="userRoleManagementLocalBean"/>
     <jee:local-slsb jndi-name="java:app/tat-core-logic-impl-1.0/RoleAclManagementSessionEJB!com.retirement.tat.core.business.RoleAclManagementLocalBean" business-interface="com.retirement.tat.core.business.RoleAclManagementLocalBean" id="roleAclManagementLocalBean"/>
     <jee:local-slsb jndi-name="java:app/tat-core-logic-impl-1.0/UserGroupAclManagementSessionEJB!com.retirement.tat.core.business.UserGroupAclManagementLocalBean" business-interface="com.retirement.tat.core.business.UserGroupAclManagementLocalBean" id="userGroupAclManagementLocalBean"/>
+    <jee:local-slsb jndi-name="java:app/tat-core-logic-impl-1.0/TipManagementSessionEJB!com.retirement.tat.core.business.TipManagementLocalBean" business-interface="com.retirement.tat.core.business.TipManagementLocalBean" id="tipManagementLocalBean"/>
+    <jee:local-slsb jndi-name="java:app/tat-core-logic-impl-1.0/TipCategoryManagementSessionEJB!com.retirement.tat.core.business.TipCategoryManagementLocalBean" business-interface="com.retirement.tat.core.business.TipCategoryManagementLocalBean" id="tipCategoryManagementLocalBean"/>
 
 
     <bean id="userSecurityAdvice" class="com.retirement.tat.web.security.MyUserDetailService">
