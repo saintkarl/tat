@@ -1,104 +1,82 @@
 <%@ include file="/common/taglibs.jsp" %>
+<c:url var="url" value="/admin/tip/edit.html"/>
+<c:url var="backUrl" value="/admin/tip/list.html"/>
+<head>
+    <title><fmt:message key="edit.tip.title"/></title>
+</head>
 
-<c:choose>
-    <c:when test="${!empty messageResponse}">${messageResponse}</c:when>
-    <c:otherwise>
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header bg-blue">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title"><fmt:message key="role.management"/> </h4>
-                </div>
-                <div class="modal-body">
-                    <div class="container-fluid">
-                        <c:if test="${!empty errorMessage}">
-                            <div class="callout callout-danger">
-                                <h4>Error!</h4>
-                                <p>${errorMessage}</p>
-                            </div>
-                        </c:if>
+<div class="breadcrumbs ace-save-state" id="breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <i class="ace-icon fa fa-home home-icon"></i>
+            <a href="#"><fmt:message key="label.home"/></a>
+        </li>
+        <li>
+            <a href="#"><fmt:message key="label.tip.title"/></a>
+        </li>
+        <li class="active"><fmt:message key="edit.tip.title"/></li>
+    </ul><!-- /.breadcrumb -->
+</div>
 
-                        <c:url value="/admin/role/list.html" var="formUrl"/>
-                        <form:form commandName="item" id="addRoleFormItem" action="${formUrl}" novalidate="novalidate" enctype="multipart/form-data">
-                            <div class="tabbable">
-                                <ul class="nav nav-tabs" id="myTab">
-                                    <li class="active">
-                                        <a data-toggle="tab" href="#home">
-                                            <i class="green ace-icon fa fa-home bigger-120"></i>
-                                            <fmt:message key="role.info"/>
-                                        </a>
-                                    </li>
 
-                                    <li>
-                                        <a data-toggle="tab" href="#messages">
-                                            <i class="green ace-icon fa fa-home bigger-120"></i>
-                                            <fmt:message key="role.permission"/>
-                                        </a>
-                                    </li>
-                                </ul>
 
-                                <div class="tab-content">
-                                    <div id="home" class="tab-pane fade in active">
-                                        <div class="form-group">
-                                            <label><fmt:message key="label.name"/><span class="require-label"></span></label>
-                                            <div class="fg-line">
-                                                <form:input path="pojo.name" cssClass="form-control input-sm"/>
-                                                <form:errors path="pojo.name" cssClass="error-inline-validate"/>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label><fmt:message key="label.code"/><span class="require-label"></span></label>
-                                            <div class="fg-line">
-                                                <form:input path="pojo.code" cssClass="form-control input-sm"/>
-                                                <form:errors path="pojo.code" cssClass="error-inline-validate"/>
-                                            </div>
-                                        </div>
-                                    </div>
 
-                                    <div id="messages" class="tab-pane fade">
-                                        <display:table name="permissions" cellspacing="0" cellpadding="0" requestURI="#"
-                                                       partialList="true" sort="external" size="${fn:length(permissions)}" defaultsort="3"
-                                                       id="tableList" excludedParams="checkList"
-                                                       pagesize="${fn:length(permissions)}" export="false"
-                                                       class="table  table-bordered table-hover" style="margin: 3em 0 1.5em;">
-                                            <display:column headerClass="select-cell" class="select-cell" sortable="false"
-                                                            title="<div class='checkbox'><label><input type='checkbox' id='checkAllBox' class='select-box'/><i class='input-helper'></i></label></div>">
-                                                <div class="checkbox">
-                                                    <c:set var="checkbox" value="" />
-                                                    <label>
-                                                        <input name="mapPermissions[${tableList.permissionId}]" <c:if test="${mapPermissions[tableList.permissionId] != null}">checked="true"</c:if>
-                                                               type="checkbox" class="select-box" value="${tableList.permissionId}"/>
-                                                        <i class="input-helper"></i>
-                                                    </label>
-                                                </div>
-                                            </display:column>
 
-                                            <display:column headerClass="text-left" property="name" sortName="name" sortable="true"
-                                                            titleKey="permission.name"/>
+    <div class="page-content">
+        <div class="page-header">
+            <h1><fmt:message key="edit.tip.title"/> </h1>
+        </div><!-- /.page-header -->
+        <div class="row">
+            <div class="col-xs-12">
 
-                                            <display:setProperty name="paging.banner.onepage" value=""/>
-                                            <display:setProperty name="paging.banner.all_items_found" value=""/>
-                                            <display:setProperty name="paging.banner.item_name" value=""/>
-                                            <display:setProperty name="paging.banner.items_name" value=""/>
-                                        </display:table>
-                                    </div>
-                                </div>
-                            </div>
-                            <form:hidden path="pojo.roleId" />
-                            <form:hidden path="crudaction" value="insert-update"/>
-                        </form:form>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <div class="box-footer p-r-25">
-                        <button type="button" class="btn btn-default" data-dismiss="modal"><fmt:message key="label.cancel"/> </button>
-                        <button type="button" id="submit" class="btn btn-primary"><fmt:message key="label.save"/></button>
+                <form:form commandName="item" action="${formUrl}" method="post" id="itemForm" class="form-horizontal" novalidate="novalidate">
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right"><fmt:message key="label.title"/></label>
+
+                        <div class="col-sm-9">
+                            <input type="text" class="col-xs-10 col-sm-5">
+                        </div>
                     </div>
 
-                </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right"><fmt:message key="label.description"/></label>
+
+                        <div class="col-sm-9">
+                            <textarea type="text" class="col-xs-10 col-sm-5">
+
+                            </textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right"><fmt:message key="label.source"/></label>
+
+                        <div class="col-sm-9">
+                            <input type="text" class="col-xs-10 col-sm-5">
+                        </div>
+                    </div>
+
+
+                    <h4 class="header green clearfix"><fmt:message key="label.content"/></h4>
+                    <textarea class="wysiwyg-editor" id="tip-content-editor"></textarea>
+                    <div class="hr hr-double dotted"></div>
+
+
+                    <form:hidden path="pojo.tipId" />
+                    <form:hidden path="crudaction" value="insert-update"/>
+                </form:form>
+
             </div>
         </div>
-    </c:otherwise>
-</c:choose>
+    </div>
 
+
+<!-- inline scripts related to this page -->
+<script type="text/javascript">
+    $(function () {
+        CKEDITOR.replace('tip-content-editor');
+    });
+</script>
 

@@ -24,11 +24,11 @@ public class TipEntity {
     @Id
     @Column(name = "tipid")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public long getTipId() {
+    public Long getTipId() {
         return tipId;
     }
 
-    public void setTipId(long tipId) {
+    public void setTipId(Long tipId) {
         this.tipId = tipId;
     }
 

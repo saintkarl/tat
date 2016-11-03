@@ -37,6 +37,8 @@
 <script src="<c:url value="/themes/ace_1.4/jquery/handlebars.min.js"/>"></script>
 <script src="<c:url value="/themes/plugins/typeahead/dist/typeahead.bundle.min.js" />" ></script>
 <script src="<c:url value="/themes/plugins/bootstrap-wizard/jquery.bootstrap.wizard.min.js" />"></script>
+<script src="<c:url value="/themes/plugins/ckeditor/ckeditor.js" />"></script>
+<%--<script src="<c:url value="/themes/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" />"></script>--%>
 
 <!-- ace scripts -->
 <script src="<c:url value="/themes/ace_1.4/dist/js/ace-elements.min.js"/>"></script>

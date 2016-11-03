@@ -28,12 +28,7 @@ public class TipController extends ApplicationObjectSupport {
     private transient final Log log = LogFactory.getLog(this.getClass());
 
     @Autowired
-    private TipLocalBean tipLocalBean;
-
-    @Autowired
     private TipValidator tipValidator;
-
-
 
     @InitBinder
     public void initBinder(WebDataBinder binder){

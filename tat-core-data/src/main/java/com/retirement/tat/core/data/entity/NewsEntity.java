@@ -24,11 +24,11 @@ public class NewsEntity {
     @Id
     @Column(name = "newsid")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public long getNewsId() {
+    public Long getNewsId() {
         return newsId;
     }
 
-    public void setNewsId(long newsId) {
+    public void setNewsId(Long newsId) {
         this.newsId = newsId;
     }
 

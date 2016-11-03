@@ -20,11 +20,11 @@ public class AuthorEntity {
     @Id
     @Column(name = "authorid")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public long getAuthorId() {
+    public Long getAuthorId() {
         return authorId;
     }
 
-    public void setAuthorId(long authorId) {
+    public void setAuthorId(Long authorId) {
         this.authorId = authorId;
     }
 

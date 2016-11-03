@@ -20,11 +20,11 @@ public class NewsCategoryEntity {
     @Id
     @Column(name = "newscategoryid")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public long getNewsCategoryId() {
+    public Long getNewsCategoryId() {
         return newsCategoryId;
     }
 
-    public void setNewsCategoryId(long newsCategoryId) {
+    public void setNewsCategoryId(Long newsCategoryId) {
         this.newsCategoryId = newsCategoryId;
     }
 

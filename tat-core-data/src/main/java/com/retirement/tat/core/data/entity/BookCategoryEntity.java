@@ -20,11 +20,11 @@ public class BookCategoryEntity {
     @Id
     @Column(name = "bookcategoryid")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public long getBookTypeId() {
+    public Long getBookTypeId() {
         return bookCategoryId;
     }
 
-    public void setBookTypeId(long bookCategoryId) {
+    public void setBookTypeId(Long bookCategoryId) {
         this.bookCategoryId = bookCategoryId;
     }
 

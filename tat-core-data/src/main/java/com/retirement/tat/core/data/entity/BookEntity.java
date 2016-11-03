@@ -28,11 +28,11 @@ public class BookEntity {
     @Id
     @Column(name = "bookid")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public long getBookId() {
+    public Long getBookId() {
         return bookId;
     }
 
-    public void setBookId(long bookId) {
+    public void setBookId(Long bookId) {
         this.bookId = bookId;
     }
 

@@ -17,8 +17,6 @@ import org.springframework.validation.Validator;
 @Component
 public class TipValidator extends ApplicationObjectSupport implements Validator{
     private transient final Log log = LogFactory.getLog(this.getClass());
-    @Autowired
-    private TipLocalBean tipLocalBean;
 
     @Override
     public boolean supports(Class<?> aClass) {

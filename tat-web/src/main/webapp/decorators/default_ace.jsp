@@ -21,6 +21,7 @@
 
         <%--vendor theme--%>
         <link href="<c:url value="/themes/plugins/kartik-bootstrap-fileinput/css/fileinput.min.css"/>" rel="stylesheet" >
+        <%--<link href="<c:url value="/themes/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css"/>" rel="stylesheet" >--%>
 
         <!-- ace styles -->
         <link rel="stylesheet" href="<c:url value="/themes/ace_1.4/dist/css/ace.min.css"/>">
