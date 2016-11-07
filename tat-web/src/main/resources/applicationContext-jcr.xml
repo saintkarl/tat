@@ -11,7 +11,7 @@
 
     <bean id="rmiClientFactory" class="org.apache.jackrabbit.rmi.client.ClientRepositoryFactory"/>
     <bean id="rmiClient" factory-bean="rmiClientFactory" factory-method="getRepository">
-        <constructor-arg value="rmi://localhost:1098/jackrabbit.repository"/>
+        <constructor-arg value="rmi://localhost:1095/jackrabbit.repository"/>
     </bean>
 
     <bean id="jcrSessionFactory" class="org.springmodules.jcr.jackrabbit.JackrabbitSessionFactory">

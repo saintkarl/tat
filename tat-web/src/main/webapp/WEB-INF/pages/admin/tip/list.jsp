@@ -1,43 +1,46 @@
 <%@ include file="/common/taglibs.jsp" %>
+<c:url var="formUrl" value="/admin/tip/list.html"/>
+
 <html>
 <head>
-    <title><fmt:message key="role.management"/></title>
+    <title><fmt:message key="list.tip.title"/></title>
     <meta name="menu" content="users-manage"/>
-    <meta name="gmenu" content="role"/>
+    <meta name="gmenu" content="tip"/>
 </head>
 <body>
+<div class="breadcrumbs ace-save-state" id="breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <i class="ace-icon fa fa-home home-icon"></i>
+            <a href="#"><fmt:message key="label.home"/></a>
+        </li>
+        <li>
+            <a href="#"><fmt:message key="label.tip.title"/></a>
+        </li>
+        <li class="active"><fmt:message key="list.tip.title"/></li>
+    </ul><!-- /.breadcrumb -->
+</div>
 
-<section class="breadcrumbs ace-save-state" id="breadcrumbs">
-    <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> <fmt:message key="role.management"/></a></li>
-        <li class="active"><fmt:message key="role.title"/></li>
-    </ol>
-</section>
+<div class="page-content">
+    <c:if test="${not empty messageResponse}">
+        <div class="row">
+            <div class="col-xs-12">
 
-<c:url var="formUrl" value="/admin/role/list.html"/>
-<section class="page-content">
+                <div class="alert alert-${alert} alert-dismissible fade in" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                        ${messageResponse}
+                </div>
+            </div>
+        </div>
+    </c:if>
+
     <div class="page-header">
-        <h1>
-            <fmt:message key="role.management"/>
-            <small><i class="ace-icon fa fa-angle-double-right"></i> <fmt:message key="label.list"/></small>
-        </h1>
-    </div>
-    <c:if test="${!empty errorMessage}">
-        <div class="alert alert-danger alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                    aria-hidden="true">x</span></button>
-            <p>${errorMessage}</p>
+        <div class="row">
+            <h1 class="col-sm-12"><fmt:message key="list.tip.title"/> </h1>
         </div>
-    </c:if>
-
-    <c:if test="${!empty messageResponse}">
-        <div class="alert alert-success alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                    aria-hidden="true">x</span></button>
-            <p>${messageResponse}</p>
-        </div>
-    </c:if>
-
+    </div><!-- /.page-header -->
 
     <form:form action="${formUrl}" commandName="items" role="form" id="listForm" cssClass="form-horizontal">
         <div class="row">
@@ -55,15 +58,15 @@
                         <div class="widget-main">
                             <div class="form-horizontal">
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label"><fmt:message key="label.name"/></label>
+                                    <label class="col-sm-2 control-label"><fmt:message key="label.title"/></label>
                                     <div class="col-sm-9">
-                                        <form:input path="pojo.name" cssClass="form-control input-sm"/>
+                                        <form:input path="pojo.title" cssClass="form-control input-sm"/>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="widget-bottom form-actions center">
-                            <button id="btnApplySearch" type="button" class="btn btn-sm btn-success">
+                            <button id="btnSearch" type="button" class="btn btn-sm btn-success">
                                 <fmt:message key="label.apply.search"/>
                                 <i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
                             </button>
@@ -73,12 +76,10 @@
                 <div class="table-btn-controls">
                     <div class="pull-right tableTools-container">
                         <div class="dt-buttons btn-overlap btn-group">
-                            <a href="#" roleId="" class="dt-button buttons-colvis btn btn-white btn-primary btn-bold addEditRole">
-                                <span>
-                                    <i class="fa fa-plus-circle bigger-110 purple"></i>
-                                    <span class="hidden"><fmt:message key="label.addnew"/></span>
-                                </span>
-                            </a>
+                            <button class="btn btn-success btnAdd">
+                                <i class="ace-icon fa fa-plus"></i>
+                                <fmt:message key="label.add"/>
+                            </button>
                             <a id="confirmDelete" class="dt-button buttons-html5 btn btn-white btn-primary btn-bold">
                                 <span>
                                     <i class="fa fa-trash-o bigger-110 pink"></i>
@@ -89,65 +90,61 @@
                     </div>
                 </div>
 
-
-
-            <c:if test="${items.totalItems > 0}">
-                <div class="dataTables_wrapper form-inline no-footer">
-                    <display:table name="items.listResult" cellspacing="0" cellpadding="0" requestURI="${formUrl}"
-                                   partialList="true" sort="external" size="${items.totalItems }" defaultsort="3"
-                                   id="tableList" excludedParams="checkList"
-                                   pagesize="${items.maxPageItems}" export="false"
-                                   class="table table-fcv-ace table-striped table-bordered table-hover dataTable no-footer" style="margin: 3em 0 1.5em;">
-                        <display:column headerClass="select-cell" class="select-cell" sortable="false"
-                                       title="<label class='pos-rel'><input type='checkbox' class='ace'><span class='lbl'></span></label>">
-                            <label class="pos-rel">
+                <c:if test="${items.totalItems > 0}">
+                    <div class="dataTables_wrapper form-inline no-footer">
+                        <display:table name="items.listResult" cellspacing="0" cellpadding="0" requestURI="${formUrl}"
+                                       partialList="true" sort="external" size="${items.totalItems }" defaultsort="3"
+                                       id="tableList" excludedParams="checkList"
+                                       pagesize="${items.maxPageItems}" export="false"
+                                       class="table table-fcv-ace table-striped table-bordered table-hover dataTable no-footer" style="margin: 3em 0 1.5em;">
+                            <display:column headerClass="select-cell" class="select-cell" sortable="false"
+                                            title="<label class='pos-rel'><input type='checkbox' class='ace'><span class='lbl'></span></label>">
+                                <label class="pos-rel">
                                     <input name="checkList" type="checkbox" class="ace"
-                                           value="${tableList.roleId}"/>
+                                           value="${tableList.tipId}"/>
                                     <span class="lbl"></span>
-                            </label>
-                        </display:column>
-                        <display:column headerClass="text-left" property="name" sortName="name" sortable="true"
-                                        titleKey="role.name"/>
-                        <display:column headerClass="text-left" property="code" sortName="code" sortable="true"
-                                        titleKey="role.code"/>
-                        <display:column headerClass="col-actions" titleKey="label.action">
-                            <a class="btn btn-xs btn-info addEditRole"
-                              roleId="${tableList.roleId}">
-                                <i class="ace-icon fa fa-pencil bigger-120"></i>
-                            </a>
+                                </label>
+                            </display:column>
+                            <display:column headerClass="text-left" property="title" sortName="title" sortable="true"
+                                            titleKey="tip.title"/>
+                            <display:column headerClass="col-actions" titleKey="label.action">
+                                <c:url var="editUrl" value="/admin/tip/edit.html">
+                                    <c:param name="pojo.tipId" value="${tableList.tipId}"/>
+                                </c:url>
 
-                            <button onclick="warningBeforeDelete('${tableList.roleId}');"
-                                    type="button" class="btn btn-xs btn-danger">
-                                <i class="ace-icon fa fa-trash-o bigger-120"></i>
-                            </button>
+                                <a href="${editUrl}" class="btn btn-xs btn-info addEditRole">
+                                    <i class="ace-icon fa fa-pencil bigger-120"></i>
+                                </a>
 
-                        </display:column>
-                        <display:setProperty name="paging.banner.placement" value="bottom"/>
-                        <display:setProperty name="paging.banner.item_name" value="role"/>
-                        <display:setProperty name="paging.banner.items_name" value="roles"/>
-                    </display:table>
-                </div>
-            </c:if>
+                                <button onclick="warningBeforeDelete('${tableList.tipId}');"
+                                        type="button" class="btn btn-xs btn-danger">
+                                    <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                </button>
 
-            <input type="hidden" name="crudaction" id="crudaction"/>
-            <input type="hidden" id="hiddenItem"/>
+                            </display:column>
+                            <display:setProperty name="paging.banner.placement" value="bottom"/>
+                            <display:setProperty name="paging.banner.item_name" value="tip"/>
+                            <display:setProperty name="paging.banner.items_name" value="tips"/>
+                        </display:table>
+                    </div>
+                </c:if>
+
+                <input type="hidden" name="crudaction" id="crudaction"/>
             </div>
         </div>
     </form:form>
-</section>
-
-<div class="modal fade" role="dialog" id="addModel"></div>
+</div>
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $("#btnApplySearch").click(function () {
+        $("#btnSearch").click(function () {
             $("#itemForm").submit();
         });
 
-        $(".addEditRole").click(function(){
+        $(".addEdittip").click(function(){
             var $modal = $('#addModel');
-            var roleId = $(this).attr("roleId");
-            $modal.load('<c:url value="/ajax/admin/role/edit.html"/>', {'pojo.roleId' : roleId, '_': new Date().getTime()}, function(){
+            var tipId = $(this).attr("tipId");
+            $modal.load('<c:url value="/ajax/admin/tip/edit.html"/>', {'pojo.tipId' : tipId, '_': new Date().getTime()}, function(){
                 $modal.modal();
                 registerSubmitPopup();
             });
@@ -156,7 +153,7 @@
         function registerSubmitPopup(){
 
             $("#submit").click(function(){
-                $("#addRoleFormItem").submit();
+                $("#addtipFormItem").submit();
             });
             $('#myTab a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
                 //if($(e.target).attr('href') == "#home") doSomethingNow();
@@ -171,7 +168,7 @@
                 }
             });
 
-            $("#addRoleFormItem").submit(function(e){
+            $("#addtipFormItem").submit(function(e){
                 e.preventDefault();
 
                 $("#crudaction").val("insert-update");
@@ -183,10 +180,10 @@
                     contentType: false,
                     processData:false,
                     data: formData,
-                    url:  "<c:url value="/ajax/admin/role/edit.html"/>",
+                    url:  "<c:url value="/ajax/admin/tip/edit.html"/>",
                     success: function(res){
                         if(res.trim() == "success"){
-                            document.location = "<c:url value="/admin/role/list.html"/>";
+                            document.location = "<c:url value="/admin/tip/list.html"/>";
                         }else{
                             $("#addModel").html(res);
                             registerSubmitPopup();

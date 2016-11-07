@@ -16,7 +16,7 @@ public class TipEntity {
     private String content;
     private String tags;
     private String source;
-    private TipCategoryEntity category;
+    private TipCategoryEntity tipCategory;
     private UsersEntity createdBy;
     private Timestamp createdDate;
     private Timestamp modifiedDate;
@@ -102,16 +102,15 @@ public class TipEntity {
         this.createdBy = createdBy;
     }
 
-
     @ManyToOne
     @JoinColumn(name = "categoryid", referencedColumnName = "tipcategoryid", nullable = false)
 
-    public TipCategoryEntity getCategory() {
-        return category;
+    public TipCategoryEntity getTipCategory() {
+        return tipCategory;
     }
 
-    public void setCategory(TipCategoryEntity category) {
-        this.category = category;
+    public void setTipCategory(TipCategoryEntity tipCategory) {
+        this.tipCategory = tipCategory;
     }
 
     @Basic

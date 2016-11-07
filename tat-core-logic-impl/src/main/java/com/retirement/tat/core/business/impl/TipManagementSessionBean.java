@@ -2,6 +2,7 @@ package com.retirement.tat.core.business.impl;
 
 import com.retirement.tat.common.util.DozerSingletonMapper;
 import com.retirement.tat.core.business.TipManagementLocalBean;
+import com.retirement.tat.core.data.entity.TipCategoryEntity;
 import com.retirement.tat.core.data.entity.TipEntity;
 import com.retirement.tat.core.data.session.TipLocalBean;
 import com.retirement.tat.core.dto.TipDTO;
@@ -25,10 +26,17 @@ public class TipManagementSessionBean implements TipManagementLocalBean {
         TipEntity entity = null;
         if (dto.getTipId() != null && dto.getTipId() > 0) {
             entity = tipLocalBean.findById(dto.getTipId());
+            entity.setTitle(dto.getTitle());
+            entity.setContent(dto.getContent());
+            entity.setThumbnail(dto.getThumbnail());
+            entity.setDescription(dto.getDescription());
+            entity.setSource(dto.getSource());
+            entity.setTags(dto.getTags());
+            entity.setTipCategory(DozerSingletonMapper.getInstance().map(dto.getTipCategory(), TipCategoryEntity.class));
             entity.setModifiedDate(new Timestamp(System.currentTimeMillis()));
             tipLocalBean.update(entity);
         } else {
-            entity = new TipEntity();
+            entity = DozerSingletonMapper.getInstance().map(dto, TipEntity.class);
             entity.setCreatedDate(new Timestamp(System.currentTimeMillis()));
             entity = tipLocalBean.save(entity);
             dto.setTipId(entity.getTipId());
@@ -41,8 +49,8 @@ public class TipManagementSessionBean implements TipManagementLocalBean {
         Object[] objs = tipLocalBean.searchByProperties(properties, sortExpression, sortDirection, firstItem, maxPageItems, whereClause);
         List<TipEntity> roleEntries = (List<TipEntity>)objs[1];
         List<TipDTO> roleDTOs = new ArrayList<>();
-        for(TipEntity TipEntity : roleEntries){
-            roleDTOs.add(DozerSingletonMapper.getInstance().map(TipEntity, TipDTO.class));
+        for(TipEntity tipEntity : roleEntries){
+            roleDTOs.add(DozerSingletonMapper.getInstance().map(tipEntity, TipDTO.class));
         }
 
         Long totals = Long.valueOf(objs[0].toString());
@@ -103,7 +111,7 @@ public class TipManagementSessionBean implements TipManagementLocalBean {
     }
 
     @Override
-    public Integer deleteItems(String[] checkList,Map<Long,Long> mapPermissions) {
+    public Integer deleteItems(String[] checkList) {
         Integer res = 0;
         if(checkList != null && checkList.length >= 0){
             for(String id : checkList){

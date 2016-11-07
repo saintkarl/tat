@@ -94,7 +94,7 @@ public class TipCategoryEntity {
         return result;
     }
 
-    @OneToMany(mappedBy = "category")
+    @OneToMany(mappedBy = "tipCategory")
 
     public List<TipEntity> getTips() {
         return tips;

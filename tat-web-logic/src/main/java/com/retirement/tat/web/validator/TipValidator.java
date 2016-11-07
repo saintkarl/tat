@@ -1,13 +1,11 @@
 package com.retirement.tat.web.validator;
 
 
-import com.retirement.tat.core.data.session.TipLocalBean;
 import com.retirement.tat.core.dto.TipDTO;
 import com.retirement.tat.web.command.TipCommand;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.ApplicationObjectSupport;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;

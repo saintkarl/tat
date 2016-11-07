@@ -16,6 +16,22 @@ $(document).ready(function(){
         trigger: 'hover',
         placement: 'top'
     });
+
+    $('.ace_file_input').each(function(){
+        var me = this;
+        $(me).ace_file_input({
+            style: 'well',
+            btn_choose: $(me).attr('title'),
+            btn_change: null,
+            no_icon: 'ace-icon fa fa-cloud-upload',
+            droppable: true,
+            thumbnail: 'fit'
+            ,
+            preview_error : function(filename, error_code) {
+            }
+
+        });
+    });
 });
 
 function submitForm(formId){

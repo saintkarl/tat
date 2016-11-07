@@ -10,6 +10,74 @@ public class TipDTO implements Serializable {
     private Long tipId;
     private String title;
     private String content;
+    private String description;
+    private String thumbnail;
+    private String source;
+    private String tags;
+    private TipCategoryDTO tipCategory;
+    private UserDTO createdBy;
+
+    public TipDTO() {
+    }
+
+    public TipDTO(Long tipId, String title, String content, String description, String thumbnail, String source, String tags, TipCategoryDTO tipCategory) {
+        this.tipId = tipId;
+        this.title = title;
+        this.content = content;
+        this.description = description;
+        this.thumbnail = thumbnail;
+        this.source = source;
+        this.tags = tags;
+        this.tipCategory = tipCategory;
+    }
+
+    public UserDTO getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(UserDTO createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getThumbnail() {
+        return thumbnail;
+    }
+
+    public void setThumbnail(String thumbnail) {
+        this.thumbnail = thumbnail;
+    }
+
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
+    }
+
+    public String getTags() {
+        return tags;
+    }
+
+    public void setTags(String tags) {
+        this.tags = tags;
+    }
+
+    public TipCategoryDTO getTipCategory() {
+        return tipCategory;
+    }
+
+    public void setTipCategory(TipCategoryDTO tipCategory) {
+        this.tipCategory = tipCategory;
+    }
 
     public Long getTipId() {
         return tipId;

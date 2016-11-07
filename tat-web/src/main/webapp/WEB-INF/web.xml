@@ -117,17 +117,17 @@
         </init-param>
     </filter>
 
-    <servlet>
-        <servlet-name>DownloadFileStaticServlet</servlet-name>
-        <servlet-class>com.retirement.tat.web.servlet.captcha.jcr.DownloadFileStaticServlet</servlet-class>
-    </servlet>
+	<servlet>
+		<servlet-name>DownloadFileServlet</servlet-name>
+		<servlet-class>com.retirement.tat.web.servlet.DownloadFileServlet</servlet-class>
+	</servlet>
 
-    <servlet-mapping>
-        <servlet-name>DownloadFileStaticServlet</servlet-name>
-        <url-pattern>/repository/*</url-pattern>
-        <url-pattern>/jackrabbit/repository/default/content/*</url-pattern>
-        <url-pattern>/content/*</url-pattern>
-    </servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>DownloadFileServlet</servlet-name>
+		<url-pattern>/repository/*</url-pattern>
+		<url-pattern>/content/*</url-pattern>
+	</servlet-mapping>
+
 
     <!--<filter>-->
 		<!--<filter-name>SSLSessionSharingFilter</filter-name>-->

@@ -19,7 +19,7 @@ public interface TipManagementLocalBean {
     List<TipDTO> findAll();
 
     TipDTO findByName(String name) throws ObjectNotFoundException;
-    Integer deleteItems(String[] checkList, Map<Long, Long> mapPermissions);
+    Integer deleteItems(String[] checkList);
     TipDTO findByCode(String code) throws ObjectNotFoundException;
     TipDTO addItem(TipDTO pojo, Map<Long, Long> mapPermissions) throws DuplicateKeyException;
     TipDTO updateItem(TipDTO pojo, Map<Long, Long> mapPermissions) throws ObjectNotFoundException, DuplicateKeyException;

@@ -170,4 +170,6 @@ public class Constants {
     public static final String REDIRECT_UPDATE = "redirect_update";
     public static final String REDIRECT_ERROR = "redirect_error";
 
+    public static final String TIP_IMG_PATH = "tip";
+
 }
