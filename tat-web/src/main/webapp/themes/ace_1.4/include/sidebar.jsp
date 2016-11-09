@@ -1,5 +1,5 @@
 <%@ include file="/common/taglibs.jsp" %>
-<div id="sidebar" class="sidebar                  responsive                    ace-save-state">
+<div id="sidebar" class="sidebar responsive ace-save-state sidebar-fixed">
 <script type="text/javascript">
     try {
         ace.settings.loadState('sidebar')
@@ -96,10 +96,6 @@
             <li>
                 <a href="<c:url value="/admin/tip/list.html"/>">
                     <i class="menu-icon fa fa-caret-right"></i><fmt:message key="list.tip.title"/>
-                </a>
-                <b class="arrow"></b>
-                <a href="<c:url value="/admin/tip/edit.html"/>">
-                    <i class="menu-icon fa fa-caret-right"></i><fmt:message key="edit.tip.title"/>
                 </a>
                 <b class="arrow"></b>
             </li>

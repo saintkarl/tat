@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="<c:url value="/themes/font-awesome-4.6.3/css/font-awesome.min.css"/>">
 
         <!-- page specific plugin styles -->
-        <link rel="stylesheet" href="<c:url value="/themes/ace_1.4/components/select2-4.0.3/dist/css/select2.min.css"/>">
+        <%--<link rel="stylesheet" href="<c:url value="/themes/ace_1.4/components/select2-4.0.3/dist/css/select2.min.css"/>">--%>
         <!-- text fonts -->
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300"/>
 
@@ -17,7 +17,8 @@
         <link rel="stylesheet" href="<c:url value="/themes/ace_1.4/components/_mod/jquery-ui.custom/jquery-ui.custom.min.css"/>">
         <link rel="stylesheet" href="<c:url value="/themes/ace_1.4/components/fullcalendar/dist/fullcalendar.min.css"/>">
         <link rel="stylesheet" href="<c:url value="/themes/ace_1.4/components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css"/>">
-        <link rel="stylesheet" href="<c:url value="/themes/ace_1.4/components/bootstrap-select/dist/css/bootstrap-select.css"/>">
+        <%--<link rel="stylesheet" href="<c:url value="/themes/ace_1.4/components/bootstrap-select/dist/css/bootstrap-select.css"/>">--%>
+        <link rel="stylesheet" href="<c:url value="/themes/ace_1.4/components/chosen/chosen.min.css"/>">
 
         <%--vendor theme--%>
         <link href="<c:url value="/themes/plugins/kartik-bootstrap-fileinput/css/fileinput.min.css"/>" rel="stylesheet" >

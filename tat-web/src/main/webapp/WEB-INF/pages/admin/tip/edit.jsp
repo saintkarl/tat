@@ -4,6 +4,7 @@
 <head>
     <title><fmt:message key="edit.tip.title"/></title>
 </head>
+<body>
 
 <div class="breadcrumbs ace-save-state" id="breadcrumbs">
     <ul class="breadcrumb">
@@ -15,10 +16,8 @@
             <a href="#"><fmt:message key="label.tip.title"/></a>
         </li>
         <li class="active"><fmt:message key="edit.tip.title"/></li>
-    </ul><!-- /.breadcrumb -->
+    </ul>
 </div>
-
-
 
 <div class="page-content">
     <c:if test="${not empty messageResponse}">
@@ -49,7 +48,7 @@
                 </button>
             </div>
         </div>
-    </div><!-- /.page-header -->
+    </div>
     <div class="row">
         <div class="col-xs-12">
             <form:form commandName="item" action="${formUrl}" method="post" id="itemForm" class="form-horizontal" enctype="multipart/form-data" novalidate="novalidate">
@@ -85,7 +84,7 @@
                 <div class="form-group">
                     <label class="col-sm-3 control-label no-padding-right"><fmt:message key="label.tip.category"/></label>
 
-                    <div class="col-sm-9">
+                    <div class="col-sm-3">
                         <select name="pojo.tipCategory.tipCategoryId" class="chosen-select">
                             <c:forEach items="${tipCategories}" var="tipCategory">
                                 <option value="${tipCategory.tipCategoryId}" <c:if test="${tipCategory.tipCategoryId eq item.pojo.tipCategory.tipCategoryId}">selected</c:if>>${tipCategory.name}</option>
@@ -99,35 +98,41 @@
                     <label class="col-sm-3 control-label no-padding-right"><fmt:message key="label.thumnail"/></label>
                     <div class="col-sm-5">
                         <c:if test="${!empty item.pojo.thumbnail}">
-                            <img style="width: 70px; height: 70px;" src="<c:url value="/repository${item.pojo.thumbnail}"/>"/>
+                            <p>
+                                <img class="file-preview-image" src="<c:url value="/repository${item.pojo.thumbnail}"/>"/>
+                            </p>
                         </c:if>
                         <input name="img_file" multiple="" type="file" class="ace_file_input" title="<fmt:message key="drop.file.or.click.choose"/>"/>
                         <form:errors path="pojo.thumbnail" cssClass="red-text"/>
                     </div>
+                    <div class="col-sm-4">
+
+                    </div>
                 </div>
 
-
                 <h4 class="header green clearfix"><fmt:message key="label.content"/></h4>
-                <textarea class="wysiwyg-editor" id="tip-content-editor"></textarea>
+                <textarea name="pojo.content" class="wysiwyg-editor" id="tip-content-editor">${item.pojo.content}</textarea>
                 <div class="hr hr-double dotted"></div>
-
 
                 <form:hidden path="pojo.tipId" />
                 <form:hidden path="crudaction" value="insert-update"/>
             </form:form>
-
         </div>
     </div>
 </div>
 
-
-<!-- inline scripts related to this page -->
 <script type="text/javascript">
     $(function () {
         CKEDITOR.replace('tip-content-editor');
         $('.btnSave').click(function(){
             $('#itemForm').submit();
-        })
+        });
+        <c:if test="${!empty item.pojo.thumbnail}">
+        $('.ace_file_input').ace_file_input('show_file_list', ['<c:url value="/repository${item.pojo.thumbnail}"/>']);
+        </c:if>
     });
 </script>
+</body>
+
+
 

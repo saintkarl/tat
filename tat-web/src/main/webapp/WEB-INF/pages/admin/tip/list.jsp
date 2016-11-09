@@ -1,6 +1,6 @@
 <%@ include file="/common/taglibs.jsp" %>
 <c:url var="formUrl" value="/admin/tip/list.html"/>
-
+<c:url var="addUrl" value="/admin/tip/edit.html"/>
 <html>
 <head>
     <title><fmt:message key="list.tip.title"/></title>
@@ -75,39 +75,34 @@
                 </div>
                 <div class="table-btn-controls">
                     <div class="pull-right tableTools-container">
-                        <div class="dt-buttons btn-overlap btn-group">
-                            <button class="btn btn-success btnAdd">
-                                <i class="ace-icon fa fa-plus"></i>
-                                <fmt:message key="label.add"/>
-                            </button>
-                            <a id="confirmDelete" class="dt-button buttons-html5 btn btn-white btn-primary btn-bold">
-                                <span>
-                                    <i class="fa fa-trash-o bigger-110 pink"></i>
-                                    <span class="hidden"><fmt:message key="label.delete"/></span>
-                                </span>
-                            </a>
-                        </div>
+                        <a href="${addUrl}" class="btn btn-success">
+                            <i class="ace-icon fa fa-plus"></i>
+                            <fmt:message key="label.add"/>
+                        </a>
+                        <button id="confirmDelete" class="btn btn-danger">
+                            <i class="fa fa-trash-o"></i>
+                            <fmt:message key="label.delete"/>
+                        </button>
                     </div>
                 </div>
 
                 <c:if test="${items.totalItems > 0}">
                     <div class="dataTables_wrapper form-inline no-footer">
                         <display:table name="items.listResult" cellspacing="0" cellpadding="0" requestURI="${formUrl}"
-                                       partialList="true" sort="external" size="${items.totalItems }" defaultsort="3"
+                                       partialList="true" sort="external" size="${items.totalItems }" defaultsort="2"
                                        id="tableList" excludedParams="checkList"
                                        pagesize="${items.maxPageItems}" export="false"
                                        class="table table-fcv-ace table-striped table-bordered table-hover dataTable no-footer" style="margin: 3em 0 1.5em;">
                             <display:column headerClass="select-cell" class="select-cell" sortable="false"
                                             title="<label class='pos-rel'><input type='checkbox' class='ace'><span class='lbl'></span></label>">
                                 <label class="pos-rel">
-                                    <input name="checkList" type="checkbox" class="ace"
-                                           value="${tableList.tipId}"/>
+                                    <input name="checkList" type="checkbox" class="ace" value="${tableList.tipId}"/>
                                     <span class="lbl"></span>
                                 </label>
                             </display:column>
                             <display:column headerClass="text-left" property="title" sortName="title" sortable="true"
                                             titleKey="tip.title"/>
-                            <display:column headerClass="col-actions" titleKey="label.action">
+                            <display:column headerClass="col-actions" class="col-actions" titleKey="label.action">
                                 <c:url var="editUrl" value="/admin/tip/edit.html">
                                     <c:param name="pojo.tipId" value="${tableList.tipId}"/>
                                 </c:url>

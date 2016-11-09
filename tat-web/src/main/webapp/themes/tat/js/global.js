@@ -16,7 +16,6 @@ $(document).ready(function(){
         trigger: 'hover',
         placement: 'top'
     });
-
     $('.ace_file_input').each(function(){
         var me = this;
         $(me).ace_file_input({
@@ -32,6 +31,26 @@ $(document).ready(function(){
 
         });
     });
+    if(!ace.vars['touch']) {
+        $('.chosen-select').chosen();
+        //resize the chosen on window resize
+        $(window)
+            .off('resize.chosen')
+            .on('resize.chosen', function() {
+                $('.chosen-select').each(function() {
+                    var $this = $(this);
+                    $this.next().css({'width': $this.parent().width()});
+                })
+            }).trigger('resize.chosen');
+        //resize chosen on sidebar collapse/expand
+        $(document).on('settings.ace.chosen', function(e, event_name, event_val) {
+            if(event_name != 'sidebar_collapsed') return;
+            $('.chosen-select').each(function() {
+                var $this = $(this);
+                $this.next().css({'width': $this.parent().width()});
+            })
+        });
+    }
 });
 
 function submitForm(formId){
